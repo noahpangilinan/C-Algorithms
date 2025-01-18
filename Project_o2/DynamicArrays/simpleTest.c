@@ -8,6 +8,7 @@
 #include <string.h>
 #include "ClassErrors.h"
 #include "DynamicArrays.h"
+#include "DynamicArrays.c"
 
 /* Initial Size of Dynamic Array */
 #define INITIAL_SIZE (2)
@@ -34,7 +35,6 @@ int main(int argc, char* argv[]) {
 
    /* Initialize the dynamic array */
    CreateDArray(&TestDynamicArray, INITIAL_SIZE);
-
    /* Push data into the array */
    strncpy(TempData.String, "First line", MAX_STR_LEN);
    PushToDArray(&TestDynamicArray, &TempData);

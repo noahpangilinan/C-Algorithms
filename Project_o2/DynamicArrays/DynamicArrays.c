@@ -44,7 +44,19 @@ void CreateDArray(DArray *DArrayHead, unsigned int InitialSize) {
    Access examples:    DArrayHead->Capacity  = something
                        DArrayHead->Payload   = some malloc code
   ************************************************************************/
+    if(InitialSize > 0) {
+        int usedSpace = 0;
+        if (DArrayHead->Payload != NULL) {
+            usedSpace = strlen((DArrayHead->Payload->String));
+        }
+        DArrayHead->Payload = malloc(sizeof(char) * usedSpace);
+        if (DArrayHead->Payload == NULL) {
+            perror("ERROR: malloc failed");
+            exit MALLOC_ERROR;  // Exit the program if memory allocation fails
+        }
 
+    }
+    DArrayHead->Capacity = 0;
 
 } /* CreateDArray() */
 
@@ -75,6 +87,27 @@ unsigned int PushToDArray(DArray *DArrayHead, Data *PayloadPtr)
     Increment the number of elements used in Darray header
     Return the array index of last element inserted
    ************************************************************************/
+    int usedSpace = 0;
+    if (DArrayHead->Payload == NULL) {
+        usedSpace = 0;
+    }
+    else {
+        usedSpace = strlen(DArrayHead->Payload->String);
+    }
+    int space = (short)(DArrayHead->Capacity - (short)usedSpace);
+    int sizeofnewpayload = strlen(PayloadPtr->String);
+    if(sizeofnewpayload > space) {
+        DArrayHead->Capacity = (sizeofnewpayload + usedSpace);
+        DArrayHead->Payload = (char*)realloc(DArrayHead->Payload, (sizeof(char)*(sizeofnewpayload + usedSpace + 1)));
+      if(DArrayHead->Payload == NULL) {
+        perror("ERROR: realloc failed");
+        exit REALLOC_ERROR;
+      }
+    }
+    DArrayHead->Payload[DArrayHead->EntriesUsed] = *PayloadPtr;
+    DArrayHead->EntriesUsed += 1;
+
+    return DArrayHead->EntriesUsed;
 
 
 } /* PushToDArray() */
@@ -98,7 +131,10 @@ void DestroyDArray(DArray *DArrayHead)
     Set the capacity to zero in Darray header
     De-allocate the storage for the array elements
  *************************************************************************/
-
+    DArrayHead->EntriesUsed = 0;
+    DArrayHead->Capacity = 0;
+    free(DArrayHead->Payload);
+    DArrayHead->Payload = NULL;
 } /* DestroyDArray() */
 
 /**************************************************************************
@@ -114,4 +150,4 @@ Data *SearchDArray(DArray *DArrayHead, char *String) {
 
    /*-----  Don't implement this until instructed in Lab 6 ----*/
    return NULL;
-} /* SearchDArray() */[nap2906@gle-3159-ws01 Lab02]$
+} /* SearchDArray() */

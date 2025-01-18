@@ -29,7 +29,7 @@ int main(int argc, char *argv[]) {
         return 1;  // Exit the program if memory allocation fails
     }
 
-        strncpy(text_p, "CMPE380 lab malloc try 1.", sizeof(text_p)-1);
+    strncpy(text_p, "CMPE380 lab malloc try 1.", sizeof(text_p)-1);
 
     printf("'%s'", text_p);
     /*------------------------------------------------------------------------
@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
     text_p = (char *)realloc(text_p, 20);
     if (text_p == NULL) {
         perror("ERROR: malloc failed");
-        return -1;  // Exit the program if memory allocation fails
+        return exit;  // Exit the program if memory allocation fails
     }
 
     strncat(text_p, "--Realloc", 20 - strlen(text_p));
