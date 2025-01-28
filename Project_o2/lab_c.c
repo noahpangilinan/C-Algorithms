@@ -26,10 +26,10 @@ int main(int argc, char *argv[]) {
     text_p = (char *)malloc(12);
     if (text_p == NULL) {
         perror("ERROR: malloc failed");
-        return 1;  // Exit the program if memory allocation fails
+        return -1;  // Exit the program if memory allocation fails
     }
 
-    strncpy(text_p, "CMPE380 lab malloc try 1.", sizeof(text_p)-1);
+    strncpy(text_p, "CMPE380 lab malloc try 1.", 11);
 
     printf("'%s'", text_p);
     /*------------------------------------------------------------------------
@@ -54,7 +54,7 @@ int main(int argc, char *argv[]) {
     float floatingpoint = atof(numstr);
 
     printf("\n\n' 0005.6000 ' to integer: %i\n", integer);
-    printf("' 0005.6000 ' to integer: %f\n", floatingpoint);
+    printf("' 0005.6000 ' to float: %f\n", floatingpoint);
 
     return 0;
 }

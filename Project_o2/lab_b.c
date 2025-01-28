@@ -24,8 +24,10 @@ int main(int argc, char *argv[]) {
      *Struct vs Union
     ------------------------------------------------------------------------*/
     union anumber1 aNumber1;
+
     aNumber1.floating_point = 6.0;
     aNumber1.integer = 5;
+
     int size = sizeof(aNumber1);
     printf("UNION \nFloat: %f, Int: %i, Size: %i bytes", aNumber1.floating_point, aNumber1.integer, size);
 
@@ -59,7 +61,7 @@ int main(int argc, char *argv[]) {
           Beatles run on string for loop
         ---------------------------------------------------------------------------*/
     printf("\n\nBEATLES RUN ON STRING:");
-    char beatles_firstnames [256] = "";
+        char beatles_firstnames [256] = "";
     unsigned long dest = 256-1;
     for (int i = 0; i < length; i++) {
         unsigned long firstname_size = strlen(beatles[i].f_name);
