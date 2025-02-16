@@ -109,7 +109,7 @@ void AddToBackOfLinkedList(LinkedLists *ListPtr, char *DataPtr)
  Where: LinkedLists *ListPtr    - Pointer to the linked list to remove from
  Returns: Pointer to the data removed or NULL for none
  Errors: none
-******************************************************************************/
+*****************************************+*************************************/
 char *RemoveFromFrontOfLinkedList(LinkedLists *ListPtr)
 {
   if (ListPtr->FrontPtr == NULL){
